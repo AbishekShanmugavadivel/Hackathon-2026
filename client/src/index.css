@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #FFD700 #0A192F;
+  }
+  
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #0A192F;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background: #FFD700;
+    border-radius: 4px;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background: #FFC700;
+  }
+}
+
+@layer components {
+  .glass-morphism {
+    background: rgba(10, 25, 47, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  
+  .gold-glow {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  
+  .gold-glow-hover:hover {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-codix-gold to-codix-blue text-codix-dark font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 gold-glow-hover;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-codix-gold text-codix-gold font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-codix-gold hover:text-codix-dark;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 bg-codix-blue/30 border border-codix-gold/30 rounded-lg text-codix-light placeholder-codix-gold/50 focus:outline-none focus:ring-2 focus:ring-codix-gold/50 focus:border-codix-gold transition-all duration-300;
+  }
+
+  .input-field:focus {
+    @apply bg-codix-blue/40 border-codix-gold/60 gold-glow;
+  }
+
+  select.input-field {
+    @apply appearance-none cursor-pointer;
+  }
+
+  select.input-field option {
+    @apply bg-codix-dark text-codix-light;
+  }
+  
+  .card-gold {
+    @apply glass-morphism rounded-xl p-6 gold-glow hover:gold-glow-hover transition-all duration-300;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-codix-gold to-codix-blue bg-clip-text text-transparent;
+  }
+  
+  .hero-title {
+    @apply text-5xl md:text-7xl font-bold text-gradient mb-6 animate-pulse-slow;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-gradient mb-8;
+  }
+}
+
+@layer utilities {
+  .text-shadow-gold {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+  
+  .bg-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(10, 25, 47, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+  }
+}

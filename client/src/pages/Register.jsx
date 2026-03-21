@@ -62,9 +62,33 @@ const Register = () => {
       member.id === memberId ? { ...member, [field]: value } : member
     ))
     
-    // Clear error for this member
-    if (errors[`member_${memberId}_${field}`]) {
-      setErrors(prev => ({ ...prev, [`member_${memberId}_${field}`]: '' }))
+    // Clear error and validate in real-time for email and phone
+    const errorKey = `member_${memberId}_${field}`
+    const member = members.find(m => m.id === memberId)
+    
+    if (field === 'email' && member.role === 'Team Leader') {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+      if (!value.trim()) {
+        setErrors(prev => ({ ...prev, [errorKey]: 'Email is required' }))
+      } else if (!emailRegex.test(value)) {
+        setErrors(prev => ({ ...prev, [errorKey]: 'Invalid email format' }))
+      } else {
+        setErrors(prev => ({ ...prev, [errorKey]: '' }))
+      }
+    } else if (field === 'phone' && member.role === 'Team Leader') {
+      const phoneRegex = /^[6-9]\d{9}$/
+      if (!value.trim()) {
+        setErrors(prev => ({ ...prev, [errorKey]: 'Phone number is required' }))
+      } else if (!phoneRegex.test(value.replace(/\s/g, ''))) {
+        setErrors(prev => ({ ...prev, [errorKey]: 'Phone must be 10 digits starting with 6-9' }))
+      } else {
+        setErrors(prev => ({ ...prev, [errorKey]: '' }))
+      }
+    } else {
+      // Clear error for other fields
+      if (errors[errorKey]) {
+        setErrors(prev => ({ ...prev, [errorKey]: '' }))
+      }
     }
   }
 
@@ -126,16 +150,16 @@ const Register = () => {
       
       // Team Leader specific validation
       if (member.role === 'Team Leader') {
-        // Phone validation (10 digits only)
-        const phoneRegex = /^\d{10}$/
+        // Phone validation (10 digits, must start with 6-9)
+        const phoneRegex = /^[6-9]\d{9}$/
         if (!member.phone.trim()) {
           newErrors[`member_${member.id}_phone`] = 'Phone number is required'
         } else if (!phoneRegex.test(member.phone.replace(/\s/g, ''))) {
-          newErrors[`member_${member.id}_phone`] = 'Phone must be 10 digits'
+          newErrors[`member_${member.id}_phone`] = 'Phone must be 10 digits starting with 6-9'
         }
         
-        // Email validation
-        const emailRegex = /^\S+@\S+\.\S+$/
+        // Email validation (proper regex format)
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         if (!member.email.trim()) {
           newErrors[`member_${member.id}_email`] = 'Email is required'
         } else if (!emailRegex.test(member.email)) {

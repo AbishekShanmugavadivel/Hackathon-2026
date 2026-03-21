@@ -52,8 +52,8 @@ const validateTeamRegistration = [
     .notEmpty()
     .withMessage('Team Leader phone is required')
     .custom((value) => {
-      if (!value || !/^\d{10}$/.test(value.replace(/\s/g, ''))) {
-        throw new Error('Team Leader phone must be exactly 10 digits')
+      if (!value || !validator.isMobilePhone(value.replace(/\s/g, ''), 'en-IN')) {
+        throw new Error('Team Leader phone must be a valid Indian mobile number (10 digits starting with 6-9)')
       }
       return true
     }),
@@ -63,8 +63,12 @@ const validateTeamRegistration = [
     .trim()
     .notEmpty()
     .withMessage('Team Leader email is required')
-    .isEmail()
-    .withMessage('Team Leader email must be valid')
+    .custom((value) => {
+      if (!value || !validator.isEmail(value)) {
+        throw new Error('Team Leader email must be valid')
+      }
+      return true
+    })
 ]
 
 // POST /api/register - Register a new team

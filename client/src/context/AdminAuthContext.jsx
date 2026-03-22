@@ -8,6 +8,7 @@ export const AdminAuthContext = createContext()
 const initialState = {
   isAdmin: false,
   isLoading: false,
+  messages: []
 }
 
 // Reducer
@@ -24,6 +25,12 @@ const adminAuthReducer = (state, action) => {
 
     case 'LOGOUT':
       return { isAdmin: false, isLoading: false }
+
+    case 'ADD_MESSAGE':
+      return { ...state, messages: [action.payload, ...state.messages] }
+
+    case 'CLEAR_MESSAGES':
+      return { ...state, messages: [] }
 
     default:
       return state
@@ -54,12 +61,23 @@ export const AdminAuthProvider = ({ children }) => {
     toast.success('Logged out successfully')
   }
 
+  const addMessage = (message) => {
+    dispatch({ type: 'ADD_MESSAGE', payload: message })
+    toast.success('New message received! 📧')
+  }
+
+  const clearMessages = () => {
+    dispatch({ type: 'CLEAR_MESSAGES' })
+  }
+
   return (
     <AdminAuthContext.Provider
       value={{
         ...state,
         login,
         logout,
+        addMessage,
+        clearMessages,
       }}
     >
       {children}

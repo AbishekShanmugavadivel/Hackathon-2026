@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'react-hot-toast'
-import { Plus, X, Users, Code, Phone, Mail, Building, User, Crown, Shield, Palette, Presentation } from 'lucide-react'
+import { Plus, X, Users, Code, Phone, Mail, Building, User, Crown, Shield, Palette, Presentation, Trophy } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../components/FormInput'
 import Loader from '../components/Loader'
@@ -238,17 +238,17 @@ const Register = () => {
   }
 
   return (
-    <div className="min-h-screen py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-12 sm:py-16 lg:py-20">
+      <div className="max-w-4xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <Users className="h-16 w-16 text-codix-gold mx-auto mb-4" />
-          <h1 className="section-title">Team Registration</h1>
-          <p className="text-lg text-codix-gold/70">
+          <Users className="h-12 w-12 sm:h-16 sm:w-16 text-codix-gold mx-auto mb-4" />
+          <h1 className="section-title text-xl sm:text-2xl lg:text-3xl">Team Registration</h1>
+          <p className="text-base sm:text-lg text-codix-gold/70">
             Register your team for CODIX Hackathon 2026!
           </p>
         </motion.div>
@@ -261,43 +261,48 @@ const Register = () => {
         >
           <form onSubmit={onSubmit} className="space-y-8">
             {/* Team Information Section */}
-            <div className="card-gold p-8">
-              <h2 className="text-2xl font-semibold text-codix-gold mb-6 flex items-center">
-                <Users className="h-6 w-6 mr-2" />
-                Team Information
-              </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormInput
-                  label="Team Name"
-                  name="teamName"
-                  value={formData.teamName}
-                  onChange={handleInputChange}
-                  error={errors.teamName}
-                  placeholder="Enter your team name"
-                  required
-                />
+            <div className="card-gold p-4 sm:p-6 lg:p-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <div>
+                  <label className="block text-codix-gold font-medium mb-2 text-sm sm:text-base">Team Name</label>
+                  <input
+                    type="text"
+                    name="teamName"
+                    value={formData.teamName}
+                    onChange={handleInputChange}
+                    required
+                    className="input-field w-full text-sm sm:text-base"
+                    placeholder="Enter your team name"
+                  />
+                  {errors.teamName && (
+                    <p className="text-sm text-red-500 mt-1">{errors.teamName}</p>
+                  )}
+                </div>
                 
-                <FormInput
-                  label="College Name"
-                  name="collegeName"
-                  value={formData.collegeName}
-                  onChange={handleInputChange}
-                  error={errors.collegeName}
-                  placeholder="Enter your college/institute name"
-                  required
-                />
+                <div>
+                  <label className="block text-codix-gold font-medium mb-2 text-sm sm:text-base">College Name</label>
+                  <input
+                    type="text"
+                    name="collegeName"
+                    value={formData.collegeName}
+                    onChange={handleInputChange}
+                    required
+                    className="input-field w-full text-sm sm:text-base"
+                    placeholder="Enter your college name"
+                  />
+                  {errors.collegeName && (
+                    <p className="text-sm text-red-500 mt-1">{errors.collegeName}</p>
+                  )}
+                </div>
               </div>
 
-              <div className="mt-6">
-                <label className="block text-sm font-medium text-codix-gold mb-2">
-                  Select Domain <span className="text-red-500">*</span>
-                </label>
+              <div>
+                <label className="block text-codix-gold font-medium mb-2 text-sm sm:text-base">Domain</label>
                 <select
                   name="domain"
                   value={formData.domain}
                   onChange={handleInputChange}
-                  className={`input-field ${errors.domain ? 'border-red-500 focus:border-red-500' : ''}`}
+                  className={`input-field w-full text-sm sm:text-base ${errors.domain ? 'border-red-500 focus:border-red-500' : ''}`}
                   required
                 >
                   <option value="">Select a domain</option>
@@ -312,10 +317,10 @@ const Register = () => {
             </div>
 
             {/* Team Members Section */}
-            <div className="card-gold p-8">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-codix-gold flex items-center">
-                  <Users className="h-6 w-6 mr-2" />
+            <div className="card-gold p-4 sm:p-6 lg:p-8">
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-semibold text-codix-gold flex items-center">
+                  <Users className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
                   Team Members ({members.length}/4)
                 </h2>
                 <button
@@ -329,7 +334,8 @@ const Register = () => {
                   }`}
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Add Member
+                  <span className="hidden sm:inline">Add Member</span>
+                  <span className="sm:hidden">Add</span>
                 </button>
               </div>
 
@@ -339,7 +345,7 @@ const Register = () => {
                 </div>
               )}
 
-              <div className="text-sm text-codix-gold/70 mb-6">
+              <div className="text-sm text-codix-gold/70 mb-4 sm:mb-6">
                 Each team can have 1-4 members. Exactly one member must be designated as Team Leader.
               </div>
 
@@ -352,117 +358,81 @@ const Register = () => {
                       initial={{ opacity: 0, x: -50, scale: 0.9 }}
                       animate={{ opacity: 1, x: 0, scale: 1 }}
                       exit={{ opacity: 0, x: 50, scale: 0.9 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="card-gold p-6 mb-4 border border-codix-gold/30 hover:border-codix-gold/50 transition-all duration-300"
+                      transition={{ duration: 0.3 }}
+                      className="bg-codix-dark/30 border border-codix-gold/20 rounded-lg p-3 sm:p-4"
                     >
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center space-x-3">
-                          <div className={`p-2 rounded-full ${
-                            member.role === 'Team Leader' 
-                              ? 'bg-codix-gold/20 gold-glow' 
-                              : 'bg-codix-blue/20'
-                          }`}>
-                            <RoleIcon className={`h-5 w-5 ${
-                              member.role === 'Team Leader' ? 'text-codix-gold' : 'text-codix-gold/70'
-                            }`} />
-                          </div>
-                          <h3 className="text-lg font-medium text-codix-gold">
-                            Member {index + 1}
-                            {member.role === 'Team Leader' && (
-                              <span className="ml-2 px-2 py-1 bg-codix-gold/20 text-codix-gold rounded-full text-xs">
-                                Leader
-                              </span>
-                            )}
-                          </h3>
-                        </div>
-                        {members.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => removeMember(member.id)}
-                            className="p-2 text-red-500 hover:bg-red-500/20 rounded-lg transition-colors duration-300"
-                            title="Remove Member"
+                      <div className="flex items-start justify-between mb-3 sm:mb-4">
+                        <div className="flex-1 min-w-0">
+                          <select
+                            value={member.role}
+                            onChange={(e) => handleMemberChange(member.id, 'role', e.target.value)}
+                            className="input-field text-sm sm:text-base"
                           >
-                            <X className="h-4 w-4" />
-                          </button>
-                        )}
-                      </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FormInput
-                          label="Student Name"
-                          value={member.name}
-                          onChange={(e) => handleMemberChange(member.id, 'name', e.target.value)}
-                          error={errors[`member_${member.id}_name`]}
-                          placeholder="Enter member name"
-                          required
-                        />
-                        
-                        <div className="space-y-2">
-                          <label className="block text-sm font-medium text-codix-gold">
-                            Role <span className="text-red-500">*</span>
-                          </label>
-                          <div className="relative">
-                            <select
-                              value={member.role}
-                              onChange={(e) => handleMemberChange(member.id, 'role', e.target.value)}
-                              className={`input-field appearance-none pr-10 ${
-                                errors[`member_${member.id}_role`] ? 'border-red-500 focus:border-red-500' : ''
-                              }`}
-                              required
-                            >
-                              {roleOptions.map(role => (
-                                <option key={role.value} value={role.value}>
-                                  {role.label}
-                                </option>
-                              ))}
-                            </select>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                              <RoleIcon className="h-4 w-4 text-codix-gold/50" />
-                            </div>
-                          </div>
-                          {errors[`member_${member.id}_role`] && (
-                            <p className="text-sm text-red-500">{errors[`member_${member.id}_role`]}</p>
-                          )}
+                            {roleOptions.map(option => (
+                              <option key={option.value} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                          </select>
                         </div>
+                        <button
+                          type="button"
+                          onClick={() => removeMember(member.id)}
+                          disabled={members.length <= 1}
+                          className={`p-2 text-red-500 hover:bg-red-600 rounded-lg transition-colors duration-300 ${
+                            members.length <= 1 
+                              ? 'opacity-50 cursor-not-allowed' 
+                              : 'hover:scale-105'
+                          }`}
+                          title="Remove member"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
                       </div>
 
-                      {/* Team Leader Contact Fields */}
-                      {member.role === 'Team Leader' && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-4 pt-4 border-t border-codix-gold/20"
-                        >
-                          <h4 className="text-sm font-medium text-codix-gold mb-3 flex items-center">
-                            <Phone className="h-4 w-4 mr-2" />
-                            Team Leader Contact Details
-                          </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormInput
-                              label="Mobile Number"
-                              type="tel"
-                              value={member.phone}
-                              onChange={(e) => handleMemberChange(member.id, 'phone', e.target.value.replace(/\D/g, '').slice(0, 10))}
-                              error={errors[`member_${member.id}_phone`]}
-                              placeholder="1234567890"
-                              maxLength={10}
-                              required
-                            />
-                            
-                            <FormInput
-                              label="Email ID"
-                              type="email"
-                              value={member.email}
-                              onChange={(e) => handleMemberChange(member.id, 'email', e.target.value)}
-                              error={errors[`member_${member.id}_email`]}
-                              placeholder="leader@example.com"
-                              required
-                            />
-                          </div>
-                        </motion.div>
-                      )}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                        <div>
+                          <label className="block text-codix-gold font-medium mb-2 text-sm sm:text-base">Name</label>
+                          <input
+                            type="text"
+                            value={member.name}
+                            onChange={(e) => handleMemberChange(member.id, 'name', e.target.value)}
+                            required
+                            className="input-field w-full text-sm sm:text-base"
+                            placeholder="Enter member name"
+                          />
+                          {errors[`member_${member.id}_name`] && (
+                            <p className="text-sm text-red-500 mt-1">{errors[`member_${member.id}_name`]}</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <label className="block text-codix-gold font-medium mb-2 text-sm sm:text-base">Phone</label>
+                          <input
+                            type="tel"
+                            value={member.phone}
+                            onChange={(e) => handleMemberChange(member.id, 'phone', e.target.value)}
+                            required={member.role === 'Team Leader'}
+                            className="input-field w-full text-sm sm:text-base"
+                            placeholder="Enter phone number"
+                          />
+                          {errors[`member_${member.id}_phone`] && (
+                            <p className="text-sm text-red-500 mt-1">{errors[`member_${member.id}_phone`]}</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <label className="block text-codix-gold font-medium mb-2 text-sm sm:text-base">Email</label>
+                          <input
+                            type="email"
+                            value={member.email}
+                            onChange={(e) => handleMemberChange(member.id, 'email', e.target.value)}
+                            required={member.role === 'Team Leader'}
+                            className="input-field w-full text-sm sm:text-base"
+                            placeholder="Enter email address"
+                          />
+                        </div>
+                      </div>
                     </motion.div>
                   )
                 })}
@@ -470,21 +440,32 @@ const Register = () => {
             </div>
 
             {/* Submit Button */}
-            <div className="flex justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 sm:mt-8">
+              <button
+                type="button"
+                onClick={() => navigate('/registered-students')}
+                className="btn-secondary flex items-center text-sm sm:text-base"
+              >
+                <Users className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">View Registered Teams</span>
+                <span className="sm:hidden">Teams</span>
+              </button>
               <button
                 type="submit"
                 disabled={isSubmitting || contextLoading}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center px-8 py-3 text-lg"
+                className="btn-primary flex items-center text-sm sm:text-base py-2 sm:py-3 px-6 sm:px-8"
               >
-                {(isSubmitting || contextLoading) ? (
+                {isSubmitting || contextLoading ? (
                   <>
-                    <Loader size="small" text="" />
-                    <span className="ml-2">Registering Team...</span>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-codix-light mr-3"></div>
+                    <span className="hidden sm:inline">Registering Team...</span>
+                    <span className="sm:hidden">Registering...</span>
                   </>
                 ) : (
                   <>
-                    <Users className="h-5 w-5 mr-2" />
-                    Register Team
+                    <Trophy className="h-5 w-5 mr-3" />
+                    <span className="hidden sm:inline">Register Team</span>
+                    <span className="sm:hidden">Register</span>
                   </>
                 )}
               </button>

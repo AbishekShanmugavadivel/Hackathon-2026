@@ -233,10 +233,10 @@ const Criteria = () => {
           <h2 className="text-2xl font-semibold text-codix-gold mb-6">Prize Categories</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { prize: '🥇 First Place', amount: '₹25,000' },
-              { prize: '🥈 Second Place', amount: '₹15,000' },
-              { prize: '🥉 Third Place', amount: '₹10,000' },
-              { prize: '🏆 Special Awards', amount: '₹5,000 each' }
+              { prize: '🥇 First Place', amount: '₹5,000' },
+              { prize: '🥈 Second Place', amount: '₹3,000' },
+              { prize: '🥉 Third Place', amount: '₹2,000' },
+              { prize: '🏆 Participation', amount: 'Certificate for each' }
             ].map((prize, index) => (
               <div key={index} className="text-center p-4 bg-codix-blue/20 rounded-lg">
                 <div className="text-2xl mb-2">{prize.prize}</div>

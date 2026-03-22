@@ -31,61 +31,63 @@ const Home = () => {
     },
     {
       icon: Clock,
-      title: '24-Hour Challenge',
+      title: '12-Hour Challenge',
       description: 'Intense coding marathon to test your limits',
     },
   ]
 
   const stats = [
-    { label: 'Total Prize Pool', value: '₹50,000+' },
-    { label: 'Teams Expected', value: '50+' },
-    { label: 'Duration', value: '24 Hours' },
+    { label: 'Total Prize Pool', value: '₹10,000+' },
+    { label: 'Teams Expected', value: '20+' },
+    { label: 'Duration', value: '12 Hours' },
     { label: 'Mentors', value: '10+' },
   ]
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-br from-codix-blue/90 via-codix-dark to-codix-blue/90" />
         
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-codix-gold/20 rounded-full blur-3xl animate-pulse-slow" />
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-codix-gold/10 rounded-full blur-3xl animate-pulse-slow" />
+          <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-16 sm:w-72 h-16 sm:h-72 bg-codix-gold/20 rounded-full blur-2xl sm:blur-3xl animate-pulse-slow" />
+          <div className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-20 sm:w-96 h-20 sm:h-96 bg-codix-gold/10 rounded-full blur-2xl sm:blur-3xl animate-pulse-slow" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-4xl sm:max-w-6xl lg:max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="hero-title mb-6">
+            <h1 className="hero-title mb-4 sm:mb-6 text-2xl sm:text-3xl lg:text-4xl">
               CODIX HACKATHON 2024
             </h1>
-            <p className="text-xl md:text-2xl text-codix-gold/90 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-codix-gold/90 mb-6 sm:mb-8 max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto">
               Where Innovation Meets Technology. Join us for an epic 24-hour coding marathon!
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Link to="/register" className="btn-primary">
-                Register Now
-                <ArrowRight className="ml-2 h-5 w-5" />
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12">
+              <Link to="/register" className="btn-primary text-sm sm:text-base">
+                <span className="hidden sm:inline">Register Now</span>
+                <span className="sm:hidden">Register</span>
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
-              <Link to="/rules" className="btn-secondary">
-                View Rules
+              <Link to="/rules" className="btn-secondary text-sm sm:text-base">
+                <span className="hidden sm:inline">View Rules</span>
+                <span className="sm:hidden">Rules</span>
               </Link>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-8 text-codix-gold">
-              <div className="flex items-center space-x-2">
-                <Calendar className="h-5 w-5" />
-                <span>March 25-26, 2024</span>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 text-codix-gold px-4 sm:px-6 lg:px-8">
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="text-xs sm:text-sm">March 25-26, 2024</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-5 w-5" />
-                <span>Tech Campus, Bangalore</span>
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="text-xs sm:text-sm">Government Arts And Science College, Kuthalam</span>
               </div>
             </div>
           </motion.div>
@@ -93,9 +95,9 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 glass-morphism">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-12 sm:py-16 lg:py-20 glass-morphism">
+        <div className="max-w-6xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}

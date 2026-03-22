@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Trophy, Code, Users, FileText, Scale, UserCheck } from 'lucide-react'
+import { Menu, X, Trophy, Code, Users, FileText, Scale, UserCheck, Mail } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,6 +12,7 @@ const Navbar = () => {
     { name: 'Rules', href: '/rules', icon: FileText },
     { name: 'Criteria', href: '/criteria', icon: Scale },
     { name: 'Registered Students', href: '/registered-students', icon: UserCheck },
+    { name: 'Contact', href: '/contact', icon: Mail },
   ]
 
   const isActive = (path) => location.pathname === path

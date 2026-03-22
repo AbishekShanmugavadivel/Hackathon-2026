@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Register from './pages/Register'
 import Rules from './pages/Rules'
 import Criteria from './pages/Criteria'
+import ContactUs from './pages/ContactUs'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
 import AdminStudentDetails from './pages/AdminStudentDetails'
@@ -27,6 +28,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/rules" element={<Rules />} />
               <Route path="/criteria" element={<Criteria />} />
+              <Route path="/contact" element={<ContactUs />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/registered-students" element={<RegisteredStudents />} />
               <Route 

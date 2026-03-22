@@ -74,7 +74,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-codix-gold" />
-                <span className="text-codix-gold/70">info@codixhackathon.com</span>
+                <span className="text-codix-gold/70">Abishek@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-codix-gold" />
@@ -82,7 +82,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-codix-gold" />
-                <span className="text-codix-gold/70">Tech Campus, Bangalore</span>
+                <span className="text-codix-gold/70">Government Arts And Science College, Kuthalam</span>
               </div>
             </div>
           </div>

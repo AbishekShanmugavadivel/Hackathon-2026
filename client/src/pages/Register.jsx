@@ -411,10 +411,23 @@ const Register = () => {
                           <input
                             type="tel"
                             value={member.phone}
-                            onChange={(e) => handleMemberChange(member.id, 'phone', e.target.value)}
+                            onChange={(e) => {
+                              // Allow only digits and limit to 10 characters
+                              const value = e.target.value.replace(/\D/g, '').slice(0, 10)
+                              handleMemberChange(member.id, 'phone', value)
+                            }}
+                            onKeyPress={(e) => {
+                              // Allow only numbers, backspace, delete, tab, enter
+                              if (!/[0-9\b\t\n\r]/.test(e.key)) {
+                                e.preventDefault()
+                              }
+                            }}
                             required={member.role === 'Team Leader'}
                             className="input-field w-full text-sm sm:text-base"
-                            placeholder="Enter phone number"
+                            placeholder="Enter 10 digit phone number"
+                            maxLength={10}
+                            pattern="[0-9]{10}"
+                            inputMode="numeric"
                           />
                           {errors[`member_${member.id}_phone`] && (
                             <p className="text-sm text-red-500 mt-1">{errors[`member_${member.id}_phone`]}</p>
